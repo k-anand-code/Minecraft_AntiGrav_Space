@@ -15,11 +15,13 @@ public class NoiseSpace extends JavaPlugin implements Listener {
         
         Bukkit.getPluginManager().registerEvents(this, this);
         System.out.println("Space Mod Loaded");
-        
+
+        count = 0;
 
         new BukkitRunnable() {
             @Override 
             public void run(){
+                count++;
                 for (Player p : Bukkit.getOnlinePlayers()){
 
                     if (p.getInventory().getHelmet() != null && p.getInventory().getHelmet().getType() == Material.IRON_HELMET) {
