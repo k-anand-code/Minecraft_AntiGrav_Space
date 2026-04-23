@@ -12,13 +12,15 @@ public class NoiseSpace extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
+        World world = Bukkit.getWorlds().get(0);
+        world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
+        world.setTime(18000L);
         
         Bukkit.getPluginManager().registerEvents(this, this);
-        System.out.println("Space Mod Loaded");
 
-        count = 0;
 
         new BukkitRunnable() {
+            int count = 0;
             @Override 
             public void run(){
                 count++;
@@ -28,9 +30,10 @@ public class NoiseSpace extends JavaPlugin implements Listener {
                     }
                     else {
                        p.damage(1);
-                        if (count % 10 == 0);{
+                        if (count % 10 == 0){
                         p.sendMessage(ChatColor.RED + "CAN'T BREATHE! PUT ON HELMET! SEND FOR HELP!!");
                         }
+                        p.getWorld().spawnParticle(Particle.WHITE_ASH, p.getLocation(), 10);
                     }
                 }
             }
@@ -43,11 +46,8 @@ public class NoiseSpace extends JavaPlugin implements Listener {
         Player p = e.getPlayer();
         
         
-        p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 100, 2));
+        p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 100, 2, false, false));
         p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 100, 1));
-        
-        
-        p.getWorld().spawnParticle(Particle.WHITE_ASH, p.getLocation(), 10);
         
         
     }
