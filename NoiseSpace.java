@@ -30,14 +30,14 @@ public class NoiseSpace extends JavaPlugin implements Listener {
                     }
                     else {
                        p.damage(1);
-                        if (count % 5 == 0){
+                        if (count % 4 == 0){
                         p.sendMessage(ChatColor.RED + "CAN'T BREATHE! PUT ON HELMET! SEND FOR HELP!!");
                         }
                         p.getWorld().spawnParticle(Particle.WHITE_ASH, p.getLocation(), 10);
                     }
                 }
             }
-        }.runTaskTimer(this, 0L, 20L);
+        }.runTaskTimer(this, 0L, 40L);
 
     }
 
